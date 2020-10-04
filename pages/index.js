@@ -8,7 +8,6 @@ import dynamic from 'next/dynamic';
 import { listFiles } from '../files';
 
 // Used below, these need to be registered
-// import MarkdownEditor from '../components/MarkdownEditor';
 const MarkdownEditor = dynamic(
   () => {
     return import('../components/MarkdownEditor');
@@ -27,7 +26,7 @@ import IconMarkdownSVG from '../public/icon-markdown.svg';
 import IconJavaScriptSVG from '../public/icon-javascript.svg';
 import IconJSONSVG from '../public/icon-json.svg';
 
-import css from './style.module.css';
+import css from '../styles/style.module.css';
 
 const TYPE_TO_ICON = {
   'text/plain': IconPlaintextSVG,
