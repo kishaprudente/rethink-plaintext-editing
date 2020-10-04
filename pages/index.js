@@ -8,7 +8,13 @@ import dynamic from 'next/dynamic';
 import { listFiles } from '../files';
 
 // Used below, these need to be registered
-import MarkdownEditor from '../MarkdownEditor';
+// import MarkdownEditor from '../components/MarkdownEditor';
+const MarkdownEditor = dynamic(
+  () => {
+    return import('../components/MarkdownEditor');
+  },
+  { ssr: false }
+);
 const PlaintextEditor = dynamic(
   () => {
     return import('../components/PlaintextEditor');
@@ -105,8 +111,8 @@ Previewer.propTypes = {
 
 // Uncomment keys to register editors for media types
 const REGISTERED_EDITORS = {
-  'text/plain': PlaintextEditor
-  // 'text/markdown': MarkdownEditor
+  'text/plain': PlaintextEditor,
+  'text/markdown': MarkdownEditor
 };
 
 function PlaintextFilesChallenge() {
