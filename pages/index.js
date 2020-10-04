@@ -3,12 +3,18 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import path from 'path';
 import classNames from 'classnames';
+import dynamic from 'next/dynamic';
 
 import { listFiles } from '../files';
 
 // Used below, these need to be registered
 import MarkdownEditor from '../MarkdownEditor';
-import PlaintextEditor from '../components/PlaintextEditor';
+const PlaintextEditor = dynamic(
+  () => {
+    return import('../components/PlaintextEditor');
+  },
+  { ssr: false }
+);
 
 import IconPlaintextSVG from '../public/icon-plaintext.svg';
 import IconMarkdownSVG from '../public/icon-markdown.svg';
@@ -99,8 +105,8 @@ Previewer.propTypes = {
 
 // Uncomment keys to register editors for media types
 const REGISTERED_EDITORS = {
-  // "text/plain": PlaintextEditor,
-  // "text/markdown": MarkdownEditor,
+  'text/plain': PlaintextEditor
+  // 'text/markdown': MarkdownEditor
 };
 
 function PlaintextFilesChallenge() {
@@ -114,7 +120,6 @@ function PlaintextFilesChallenge() {
 
   const write = file => {
     console.log('Writing soon... ', file.name);
-
     // TODO: Write the file to the `files` array
   };
 
