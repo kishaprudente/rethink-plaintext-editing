@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import css from './style.css';
-import ReactMarkdown from 'react-markdown';
+import SimpleMDE from 'react-simplemde-editor';
+
+import css from '../../styles/MarkdownEditor.module.css';
 
 function MarkdownEditor({ file, write }) {
   console.log(file, write);
 
   const [editorLoaded, setEditorLoaded] = useState(false);
-  const [value, setValue] = useState('');
+  const [mdeValue, setMdeValue] = useState('');
   const [fileName, setFileName] = useState('');
 
   useEffect(() => {
     file.text().then(data => {
-      setValue(data);
+      setMdeValue(data);
       setEditorLoaded(true);
       setFileName(file.name.replace('/', ''));
     });
   }, [file]);
 
+  const handleChange = ({ value }) => {
+    console.log(value);
+    setMdeValue(value);
+  };
+
   return editorLoaded ? (
     <div className={css.editor}>
       <h3>{fileName}</h3>
-      <ReactMarkdown source={value} />
+      <SimpleMDE value={mdeValue} onChange={e => handleChange(e)} />
     </div>
   ) : (
     <div> Loading Editor </div>
