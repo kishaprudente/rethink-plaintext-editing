@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import css from '../../styles/PlaintextEditor.module.css';
+import css from '../../styles/editor.module.css';
 
 //CKEDITOR
 import CKEditor from '@ckeditor/ckeditor5-react';

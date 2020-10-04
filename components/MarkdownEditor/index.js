@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import SimpleMDE from 'react-simplemde-editor';
 
-import css from '../../styles/MarkdownEditor.module.css';
+import css from '../../styles/editor.module.css';
 
 function MarkdownEditor({ file, write }) {
   console.log(file, write);
