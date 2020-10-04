@@ -20,6 +20,12 @@ const PlaintextEditor = dynamic(
   },
   { ssr: false }
 );
+const CodeEditor = dynamic(
+  () => {
+    return import('../components/CodeEditor');
+  },
+  { ssr: false }
+);
 
 import IconPlaintextSVG from '../public/icon-plaintext.svg';
 import IconMarkdownSVG from '../public/icon-markdown.svg';
@@ -111,7 +117,9 @@ Previewer.propTypes = {
 // Uncomment keys to register editors for media types
 const REGISTERED_EDITORS = {
   'text/plain': PlaintextEditor,
-  'text/markdown': MarkdownEditor
+  'text/markdown': MarkdownEditor,
+  'text/javascript': CodeEditor,
+  'application/json': CodeEditor
 };
 
 function PlaintextFilesChallenge() {
