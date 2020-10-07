@@ -25,7 +25,9 @@
     "svg-inline-loader": "^0.8.2"
   },
   "scripts": {
-    "dev": "next"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "eslintConfig": {
     "parser": "babel-eslint",

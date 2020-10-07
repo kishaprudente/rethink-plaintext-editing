@@ -21,9 +21,19 @@ function CodeEditor({ file, write }) {
     });
   }, [file]);
 
+  const handleSaveBtn = () => {
+    console.log(code);
+    write(file, code);
+  };
+
   return editorLoaded ? (
     <div className={css.editor}>
-      <h4 className={css.fileName}>{fileName}</h4>
+      <div className={css.editorNav}>
+        <h4 className={css.fileName}>{fileName}</h4>
+        <button onClick={handleSaveBtn} className={css.saveBtn}>
+          Save File
+        </button>
+      </div>
       <Editor
         className={css.codeEditor}
         value={code}

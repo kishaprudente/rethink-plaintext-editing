@@ -5,11 +5,21 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-shadow: 10px 10px 5px grey;
+}
+
+.editorNav {
+  display: block;
+}
+
+.saveBtn {
+  float: right;
 }
 
 .fileName {
   color: black;
   align-self: flex-start;
+  float: left;
 }
 
 .codeEditor {

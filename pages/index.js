@@ -131,9 +131,23 @@ function PlaintextFilesChallenge() {
     setFiles(files);
   }, []);
 
-  const write = file => {
-    console.log('Writing soon... ', file.name);
+  const saveFile = (file, content) => {
+    localStorage.setItem(file, content);
+  };
+
+  const write = (file, content) => {
+    // console.log('Writing soon... ', file.name);
     // TODO: Write the file to the `files` array
+
+    files.map(async oldFile => {
+      if (oldFile.name === file.name) {
+        let oldContent = await oldFile.text();
+        console.log(oldContent);
+        return (oldContent = content);
+      }
+    });
+
+    saveFile(file.name, content);
   };
 
   const Editor = activeFile ? REGISTERED_EDITORS[activeFile.type] : null;

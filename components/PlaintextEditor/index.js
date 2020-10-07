@@ -8,8 +8,6 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function PlaintextEditor({ file, write }) {
-  console.log(file, write);
-
   const [editorLoaded, setEditorLoaded] = useState(false);
   const [content, setContent] = useState('');
   const [fileName, setFileName] = useState('');
@@ -22,10 +20,30 @@ function PlaintextEditor({ file, write }) {
     });
   }, [file]);
 
+  const handleSaveBtn = () => {
+    console.log(content);
+    write(file, content);
+  };
+
+  const handleChangeContent = (event, editor) => {
+    const data = editor.getData();
+    console.log({ event, editor, data });
+    setContent(data);
+  };
+
   return editorLoaded ? (
     <div className={css.editor}>
-      <h4 className={css.fileName}>{fileName}</h4>
-      <CKEditor editor={ClassicEditor} data={content} />
+      <div className={css.editorNav}>
+        <h4 className={css.fileName}>{fileName}</h4>
+        <button onClick={handleSaveBtn} className={css.saveBtn}>
+          Save File
+        </button>
+      </div>
+      <CKEditor
+        editor={ClassicEditor}
+        data={content}
+        onChange={(event, editor) => handleChangeContent(event, editor)}
+      />
     </div>
   ) : (
     <div> Loading Editor </div>

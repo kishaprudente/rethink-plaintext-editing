@@ -24,9 +24,19 @@ function MarkdownEditor({ file, write }) {
     setMdeValue(value);
   };
 
+  const handleSaveBtn = () => {
+    console.log(mdeValue);
+    write(file, mdeValue);
+  };
+
   return editorLoaded ? (
     <div className={css.editor}>
-      <h3>{fileName}</h3>
+      <div className={css.editorNav}>
+        <h4 className={css.fileName}>{fileName}</h4>
+        <button onClick={handleSaveBtn} className={css.saveBtn}>
+          Save File
+        </button>
+      </div>
       <SimpleMDE value={mdeValue} onChange={e => handleChange(e)} />
     </div>
   ) : (
